@@ -67,7 +67,7 @@ public class SamplePlayer : MonoBehaviour
     {
         while(currentState == "Idle")
         {
-            if(Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") != 0)
+            if((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
             {
                 nextState = "Moving"; 
             }
@@ -123,6 +123,7 @@ private void CheckRotation()
         Vector3 xMovement = transform.right * Input.GetAxis("Horizontal");
         Vector3 zMovement = transform.forward * Input.GetAxis("Vertical");
 
+
         Vector3 movementVector = xMovement + zMovement;
 
 
@@ -138,16 +139,6 @@ private void CheckRotation()
             return false;
         }
 
-        if (movementVector.sqrMagnitude != 0)
-        {
-            movementVector *= moveSpeed * Time.deltaTime;
-            newPos -= movementVector;
-
-
-            transform.position = newPos;
-
-            return false;
-        }
 
 
         else
